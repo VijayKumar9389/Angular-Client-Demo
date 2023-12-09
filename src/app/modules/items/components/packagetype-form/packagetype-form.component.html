@@ -1,0 +1,31 @@
+<!-- packagetype-form.component.html -->
+<div class="package-type-form" *ngIf="packageTypeForm">
+  <form [formGroup]="packageTypeForm" (ngSubmit)="onSubmit()">
+
+    <div>
+      <label for="name">Name:</label>
+      <input
+        id="name"
+        formControlName="name"
+        type="text"
+      />
+      <div *ngIf="packageTypeForm.get('name') && packageTypeForm.get('name')?.hasError('required')">
+        Name is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="notes">Notes:</label>
+      <input
+        id="notes"
+        formControlName="notes"
+        type="text"
+      />
+      <div *ngIf="packageTypeForm.get('notes') && packageTypeForm.get('notes')?.hasError('required')">
+        Notes are required.
+      </div>
+    </div>
+
+    <button type="submit">Create Package Type</button>
+  </form>
+</div>

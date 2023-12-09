@@ -1,0 +1,44 @@
+<!-- create-delivery-form.component.html -->
+
+<form [formGroup]="createDeliveryForm" (ngSubmit)="createDelivery()" class="create-delivery-form">
+  <h3>Create Delivery</h3>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+  <label>
+    Delivery Date:
+    <input type="text" formControlName="deliveryDate" />
+    <div *ngIf="createDeliveryForm.get('deliveryDate')?.hasError('required')">Delivery Date is required.</div>
+  </label>
+  <label>
+    Delivery Status:
+    <input type="text" formControlName="deliveryStatus" />
+    <div *ngIf="createDeliveryForm.get('deliveryStatus')?.hasError('required')">Delivery Status is required.</div>
+  </label>
+  <label>
+    Delivery Method:
+    <input type="text" formControlName="deliveryMethod" />
+    <div *ngIf="createDeliveryForm.get('deliveryMethod')?.hasError('required')">Delivery Method is required.</div>
+  </label>
+  <label>
+    Route:
+    <input type="text" formControlName="route" />
+    <div *ngIf="createDeliveryForm.get('route')?.hasError('required')">Route is required.</div>
+  </label>
+  <label>
+    Destination:
+    <input type="text" formControlName="destination" />
+    <div *ngIf="createDeliveryForm.get('destination')?.hasError('required')">Destination is required.</div>
+  </label>
+  <label>
+    Notes:
+    <textarea formControlName="notes"></textarea>
+  </label>
+  <label>
+    Package Type:
+    <select formControlName="selectedPackageType">
+      <option value="" disabled>Select a Package Type</option>
+      <option *ngFor="let packageType of packageTypes" [value]="packageType.id">{{ packageType.name }}</option>
+    </select>
+    <div *ngIf="createDeliveryForm.get('selectedPackageType')?.hasError('required')">Package Type is required.</div>
+  </label>
+  <button type="submit" [disabled]="isLoading">{{ isLoading ? 'Creating...' : 'Create Delivery' }}</button>
+</form>

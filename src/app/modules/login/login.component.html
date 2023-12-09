@@ -1,0 +1,17 @@
+<!-- login.component.html -->
+<div>
+  <h1>Login</h1>
+  <form>
+    <div>
+      <label for="username">Username</label>
+      <input type="text" id="username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" id="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" />
+    </div>
+    <button type="button" (click)="handleLogin()">Login</button>
+    <button type="button" (click)="handleRefreshToken()">Refresh Token</button>
+  </form>
+
+</div>

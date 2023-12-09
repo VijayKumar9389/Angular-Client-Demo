@@ -1,0 +1,18 @@
+<!-- packagetype-list.component.html -->
+<div class="package-type-list">
+  <h2>Package Types</h2>
+
+  <ul *ngIf="packageTypes && packageTypes.length > 0">
+    <li *ngFor="let packageType of packageTypes">
+      <div class="package-type-item">
+        <strong>Name:</strong> {{ packageType.name }}
+        <br>
+        <strong>Notes:</strong> {{ packageType.notes }}
+      </div>
+    </li>
+  </ul>
+
+  <div *ngIf="!packageTypes || packageTypes.length === 0">
+    No package types available.
+  </div>
+</div>

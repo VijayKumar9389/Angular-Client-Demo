@@ -1,0 +1,4 @@
+<h1>{{ stakeholder.name }}</h1>
+<app-stakeholder-form [stakeholder]="stakeholder"></app-stakeholder-form>
+<app-delivery-form [stakeholderId]="stakeholder.id.toString()" [projectId]="projectId"></app-delivery-form>
+<app-tract-list [tractRecords]="stakeholder.tractRecords"></app-tract-list>

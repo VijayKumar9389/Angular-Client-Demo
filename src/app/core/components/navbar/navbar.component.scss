@@ -1,0 +1,47 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4285f4;  // Google Blue
+  padding: 1rem;
+
+  a {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #d5e2f2;  // Lighter Blue
+    }
+  }
+
+  div {
+    ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+
+      li {
+        margin-right: 1rem;
+
+        a {
+          color: #ffffff;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 1rem;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: #d5e2f2;  // Lighter Blue
+          }
+        }
+
+        &.border-b-2 {
+          border-bottom: 2px solid #ffffff;
+        }
+      }
+    }
+  }
+}
