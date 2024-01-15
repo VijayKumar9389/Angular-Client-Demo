@@ -1,0 +1,36 @@
+<div class="package-type-list">
+  <ul *ngIf="packageTypes && packageTypes.length > 0">
+    <li *ngFor="let packageType of packageTypes">
+      <div class="package-type-item">
+
+        <div class="package-type-header">
+          <h3>{{ packageType.name }}</h3>
+          <p>{{ packageType.notes }}</p>
+          <button>Delete</button>
+        </div>
+
+        <app-create-packageitem-form [packageTypeId]="packageType.id"></app-create-packageitem-form>
+
+        <div *ngIf="packageType.items && packageType.items.length > 0; else noItems">
+          <ul *ngFor="let packageItem of packageType.items" class="package-item-list">
+            <li class="package-item">
+              <img  [src]="'http://localhost:3005/images/' + packageItem.item.image" class="package-item-img" alt="test" />
+              <strong>{{ packageItem?.item?.name }}</strong>
+              <strong>{{ packageItem?.item?.description }}</strong>
+              <strong>{{ packageItem?.id }}</strong>
+              <button (click)="deletePackageItem(packageItem.id)">Delete</button>
+            </li>
+          </ul>
+        </div>
+        <ng-template #noItems>
+          <div>No package items available.</div>
+        </ng-template>
+
+      </div>
+    </li>
+  </ul>
+
+  <div *ngIf="!packageTypes || packageTypes.length === 0">
+    No package types available.
+  </div>
+</div>

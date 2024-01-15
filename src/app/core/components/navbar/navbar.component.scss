@@ -1,9 +1,57 @@
+$googleBlue: #4285f4;
+$lighterBlue: #d5e2f2;
+$navbarHeight: 64px; // Adjust as needed
+$mobileBreakpoint: 768px;
+
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #4285f4;  // Google Blue
+  background: linear-gradient(to right, $googleBlue, #0056b3);
   padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: $navbarHeight;
+  position: relative;
+  z-index: 1;
+
+  /* Your existing styles */
+  .user-container {
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: ease-in-out .3s;
+
+    .username {
+      font-size: 18px; // Adjust the font size as needed
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .user-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+
+      span {
+        font-size: 1.5rem;
+        color: $googleBlue;
+      }
+    }
+
+    &:hover {
+      background-color: $googleBlue; // Define your hover background color
+      transition: background-color 0.3s ease; // Add a smooth transition effect
+
+    }
+  }
+
 
   a {
     color: #ffffff;
@@ -13,7 +61,7 @@ nav {
     transition: color 0.3s ease;
 
     &:hover {
-      color: #d5e2f2;  // Lighter Blue
+      color: $lighterBlue;
     }
   }
 
@@ -25,6 +73,7 @@ nav {
 
       li {
         margin-right: 1rem;
+        padding: 0.5rem; // Add padding for better spacing
 
         a {
           color: #ffffff;
@@ -34,7 +83,7 @@ nav {
           transition: color 0.3s ease;
 
           &:hover {
-            color: #d5e2f2;  // Lighter Blue
+            color: $lighterBlue;
           }
         }
 
@@ -44,4 +93,40 @@ nav {
       }
     }
   }
+
+  // Hamburger menu styles
+  .hamburger-menu {
+    display: none; // Initially hide on larger screens
+
+    @media (max-width: $mobileBreakpoint) {
+      display: block; // Show on smaller screens
+    }
+  }
+
+  @media (max-width: $mobileBreakpoint) {
+    div {
+      display: none; // Hide the menu on smaller screens
+      position: absolute;
+      top: $navbarHeight;
+      left: 0;
+      right: 0;
+      background: $googleBlue;
+
+      ul {
+        flex-direction: column;
+
+        li {
+          margin: 0;
+          padding: 1rem;
+        }
+      }
+    }
+
+    nav.open {
+      div {
+        display: block; // Show the menu when the nav has the "open" class
+      }
+    }
+  }
 }
+

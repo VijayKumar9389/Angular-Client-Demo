@@ -1,0 +1,21 @@
+<form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+  <div class="modal-form">
+    <div class="form-group">
+      <label for="selectedPackageType">Select Package Type:</label>
+      <select id="selectedPackageType" formControlName="selectedPackageType">
+        <option *ngFor="let packageType of packageTypes" [value]="packageType.id">{{ packageType.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="selectedDelivery">Select Delivery:</label>
+      <select id="selectedDelivery" formControlName="selectedDelivery">
+        <option *ngFor="let delivery of deliveries" [value]="delivery.id">Dest: {{ delivery.destination }}</option>
+      </select>
+    </div>
+
+    <div class="btn-container">
+      <button type="submit">Submit</button>
+    </div>
+  </div>
+</form>

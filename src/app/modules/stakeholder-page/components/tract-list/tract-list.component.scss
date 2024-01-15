@@ -1,0 +1,64 @@
+.tract-list {
+  list-style: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 1rem;
+  border-radius: 6px;
+
+  .tract-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd; /* Add a border if needed */
+
+    h2 {
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: lighter;
+    }
+  }
+
+  .tract-records {
+    width: 100%;
+    padding: 1rem;
+
+    .tract-header {
+      position: sticky;
+      top: 0;
+     padding: 1rem;
+      margin-bottom: 1rem;
+      background-color: #f8f9fa;
+      z-index: 1;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: grey;
+
+      .list-item {
+        font-weight: bold;
+        text-transform: uppercase;
+        color: black;
+      }
+
+      .separator {
+        margin: 0 10px;
+        color: #ddd;
+      }
+
+      h3 {
+        color: #007bff;
+      }
+    }
+
+    .tract-list-wrapper {
+
+      @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import {Stakeholder} from "./stakeholder.model";
+import {PackageItemDTO} from "./item.model";
 
 // models.ts
 export interface DeliveryDTO {
@@ -22,7 +23,9 @@ export interface PackageTypeDTO {
   id: number;
   notes: string;
   name: string;
+  items: PackageItemDTO[];
 }
+
 export interface Delivery {
   id: number;
   date: string;
@@ -36,6 +39,22 @@ export interface Delivery {
 
 export interface Package {
   id: number;
+  packageType: PackageTypeDTO;
   stakeholder: Stakeholder;
+}
+
+
+export interface CreatePackageDTO {
+  stakeholderId: string;
+  packageTypeId: string;
+  deliveryId: string;
+}
+
+// package-add.dto.ts
+
+export interface PackageAddDTO {
+  selectedPackageTypeId: string;
+  selectedDeliveryId: string;
+  stakeholderId: string;
 }
 

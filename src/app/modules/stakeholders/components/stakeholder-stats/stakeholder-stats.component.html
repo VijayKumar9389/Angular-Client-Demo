@@ -1,0 +1,88 @@
+<!-- stakeholder-stats.component.html -->
+<div class='report-wrapper'>
+  <div class='report-item-wrapper'>
+    <p>TOTAL</p>
+    <label>{{ stakeholderSummary.totalCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.totalCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>SINGLE-TRACT</p>
+    <label>{{ stakeholderSummary.oneTractCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.oneTractCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>MULTI-TRACT</p>
+    <label>{{ stakeholderSummary.moreThanOneTractCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.moreThanOneTractCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>ATTEMPTED CONTACT</p>
+    <label>{{ stakeholderSummary.attemptedContactCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.attemptedContactCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>NOT ATTEMPTED</p>
+    <label>{{ stakeholderSummary.notAttemptedContactCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.notAttemptedContactCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>CONSULTED</p>
+    <label>{{ stakeholderSummary.consultedCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.consultedCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>NOT CONSULTED</p>
+    <label>{{ stakeholderSummary.notConsultedCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.notConsultedCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>DELIVERY PLANNED</p>
+    <label>{{ stakeholderSummary.deliveryPlannedCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.deliveryPlannedCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>NO DELIVERY</p>
+    <label>{{ stakeholderSummary.deliveryNotPlannedCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.deliveryNotPlannedCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>MISSING PHONE</p>
+    <label>{{ stakeholderSummary.missingPhoneNumbers }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.missingPhoneNumbers / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>CONTACTED</p>
+    <label>{{ stakeholderSummary.contactedYesCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.contactedYesCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+  <div class='report-item-wrapper'>
+    <p>NO CONTACT</p>
+    <label>{{ stakeholderSummary.contactedNoCount }}</label>
+    <div class='progress-bar'>
+      <div class='progress' [style.width.%]='(stakeholderSummary.contactedNoCount / stakeholderSummary.totalCount) * 100'></div>
+    </div>
+  </div>
+</div>
+

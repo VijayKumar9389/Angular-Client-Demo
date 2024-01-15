@@ -1,0 +1,65 @@
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+
+<div class="input-container">
+
+  <!-- Drop Down List -->
+  <select id="dropdownInput" [(ngModel)]="selectedFilter" (change)="updateFilter()">
+    <option value="option1">Stakeholder</option>
+    <option value="option2">Phone Number</option>
+    <option value="option3">Tract Number</option>
+    <option value="option4">Address</option>
+  </select>
+
+  <!-- Search Filter -->
+  <div class="input-wrapper">
+    <span class="material-symbols-outlined">
+      search
+    </span>
+    <input id="searchInput" type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="updateFilter()">
+  </div>
+
+  <!-- Input Actions Buttons -->
+  <div class="btn-wrapper">
+    <button>
+      <span class="material-symbols-outlined">
+        ios_share
+      </span>
+      Export
+    </button>
+    <button id="searchButton" (click)="toggleFilter()">
+    <span class="material-symbols-outlined">
+      filter_list
+    </span>
+      Filter
+    </button>
+    <button>
+      <span class="material-symbols-outlined">
+        filter_list_off
+      </span>
+      Clear
+    </button>
+  </div>
+
+</div>
+
+<div class="modal-overlay" *ngIf="showFilter" (click)="toggleFilter()">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>Filter</h2>
+      <button (click)="toggleFilter()" class="close-button">X</button>
+    </div>
+    <div class="modal-content">
+      <h1>{{filter}}</h1>
+      <app-stakeholder-filter></app-stakeholder-filter>
+    </div>
+  </div>
+</div>

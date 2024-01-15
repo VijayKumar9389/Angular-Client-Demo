@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {DeliveryService} from "../../core/services/delivery.service";
 import {Delivery} from "../../core/models/delivery.model";
+import {CommonModule} from "@angular/common";
+import {DeliveryListComponent} from "./components/delivery-list/delivery-list.component";
+import {DeliveryInputComponent} from "./components/delivery-input/delivery-input.component";
 
 @Component({
   selector: 'app-delivery',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, DeliveryListComponent, DeliveryInputComponent],
   providers: [DeliveryService],
   templateUrl: './delivery.component.html',
-  styleUrl: './delivery.component.css'
+  styleUrl: './delivery.component.scss'
 })
+
 export class DeliveryComponent implements OnInit {  // Implement OnInit interface
   deliveryData!: Delivery[];
 

@@ -1,12 +1,17 @@
 <div class="project-container">
+
   <!-- Page Header -->
   <div class="page-header">
-    <h1>{{ projectData?.name }}</h1>
+    <div class="header-info">
+      <h1>Stakeholders</h1>
+      <h2>{{ projectData?.name }} {{projectData?.year}}</h2>
+    </div>
+    <button>Switch Project</button>
   </div>
 
   <!-- Project Details -->
   <div class="project-details">
-    <h2>Project Details</h2>
+    <!--
     <div class="details-grid">
       <div class="detail-item">
         <p class="label">Year:</p>
@@ -20,13 +25,18 @@
         <p class="label">Survey Link:</p>
         <p>{{ projectData?.surveyLink }}</p>
       </div>
-      <!-- Add more project details as needed -->
     </div>
+    -->
   </div>
+
+  <!-- Stakeholder Input -->
+  <app-stakeholder-input></app-stakeholder-input>
 
   <!-- Stakeholder Table -->
   <div class="stakeholder-table">
-    <h2>Stakeholders</h2>
-    <app-stakeholder-table [stakeholders]="projectData?.stakeholders"></app-stakeholder-table>
+    <div class="stakeholder-table-wrapper">
+      <app-stakeholder-list [stakeholders]="projectData?.stakeholders"></app-stakeholder-list>
+    </div>
   </div>
+
 </div>

@@ -1,0 +1,19 @@
+<div class="packages-container">
+  <div class="packages-header">
+    <h1>Packages</h1>
+    <button (click)="toggleFilter()">Add Package</button>
+  </div>
+  <app-packagetype-list></app-packagetype-list>
+</div>
+
+<div class="modal-overlay" *ngIf="showFilter" (click)="toggleFilter()">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>Add Item</h2>
+      <button (click)="toggleFilter()" class="close-button">X</button>
+    </div>
+    <div class="modal-content">
+      <app-packagetype-form></app-packagetype-form>
+    </div>
+  </div>
+</div>

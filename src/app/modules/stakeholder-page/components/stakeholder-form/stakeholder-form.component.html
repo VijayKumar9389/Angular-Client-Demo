@@ -1,80 +1,116 @@
 <div class="stakeholder-form">
-  <form [formGroup]="stakeholderForm" (ngSubmit)="onSubmit()">
+  <div class="stakeholder-form-header">
+    <h2>Details</h2>
+    <button type="submit" class="submit-button">Submit</button>
+  </div>
+  <form [formGroup]="stakeholderForm" (ngSubmit)="onSubmit()" class="stakeholder-form-wrapper">
+
     <!-- Personal Details -->
     <div class="form-section">
-      <h3>Personal Details</h3>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <textarea id="name" formControlName="name" class="material-input"></textarea>
-        <div *ngIf="f.name.hasError('required')" class="error-message">Name is required</div>
-      </div>
-      <div class="form-group">
-        <label for="streetAddress">Street Address</label>
-        <textarea id="streetAddress" formControlName="streetAddress" class="material-input"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="mailingAddress">Mailing Address</label>
-        <textarea id="mailingAddress" formControlName="mailingAddress" class="material-input"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="stakeholderComments">Stakeholder Comments</label>
-        <textarea id="stakeholderComments" formControlName="stakeholderComments" class="material-input"></textarea>
+
+      <!-- Name and Stakeholder Comments -->
+      <div class="form-wrapper">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <textarea id="name" formControlName="name" class="material-input"></textarea>
+          <div *ngIf="f['name'].hasError('required')" class="error-message">Name is required</div>
+        </div>
+        <div class="form-group">
+          <label for="stakeholderComments">Stakeholder Comments</label>
+          <textarea id="stakeholderComments" formControlName="stakeholderComments" class="material-input"></textarea>
+        </div>
       </div>
     </div>
 
-    <!-- Contact Info -->
-    <div class="form-section">
-      <h3>Contact Info</h3>
-      <div class="form-group">
-        <label for="phoneNumber">Phone Number</label>
-        <input type="text" id="phoneNumber" formControlName="phoneNumber" class="material-input" />
+      <!-- Contact Info -->
+      <div class="form-section">
+        <div class="form-wrapper" >
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <textarea id="phoneNumber" formControlName="phoneNumber" class="material-input" ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <textarea id="email" formControlName="email" class="material-input" ></textarea>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text"  id="email" formControlName="email" class="material-input" />
-      </div>
-    </div>
 
-    <!-- Stakeholder Status -->
-    <div class="form-section">
-      <h3>Stakeholder Status</h3>
-      <div class="form-group">
-        <label for="stakeholderStatus">Stakeholder Status</label>
-        <input type="text" id="stakeholderStatus" formControlName="stakeholderStatus" class="material-input" />
+      <!-- Location -->
+      <div class="form-section">
+        <div class="form-wrapper">
+          <div class="form-group">
+            <label for="streetAddress">Street Address</label>
+            <textarea id="streetAddress" formControlName="streetAddress" class="material-input"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="mailingAddress">Mailing Address</label>
+            <textarea id="mailingAddress" formControlName="mailingAddress" class="material-input"></textarea>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="isPerson">Is Person</label>
-        <input type="text" id="isPerson" formControlName="isPerson" class="material-input" />
-      </div>
-    </div>
 
-    <!-- Contacted and Attempts -->
-    <div class="form-section">
-      <h3>Contacted and Attempts</h3>
-      <div class="form-group">
-        <label for="attempts">Attempts</label>
-        <input type="text" id="attempts" formControlName="attempts" class="material-input" />
-      </div>
-      <div class="form-group">
-        <label for="contacted">Contacted</label>
-        <input type="text" id="contacted" formControlName="contacted" class="material-input" />
-      </div>
-    </div>
+
 
     <!-- Consultation -->
     <div class="form-section">
-      <h3>Consultation</h3>
-      <div class="form-group">
-        <label for="consultation">Consultation</label>
-        <input type="text" id="consultation" formControlName="consultation" class="material-input" />
+
+      <!-- Stakeholder Status and Is Person -->
+      <div class="form-wrapper">
+        <div class="form-group">
+          <label for="stakeholderStatus">Stakeholder Status</label>
+          <select id="stakeholderStatus" formControlName="stakeholderStatus" class="material-input">
+            <option value="GREEN">GREEN</option>
+            <option value="RED">RED</option>
+            <option value="YELLOW">YELLOW</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="isPerson">Is Person</label>
+          <select id="isPerson" formControlName="isPerson" class="material-input">
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+          </select>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="followUp">Follow Up</label>
-        <input type="text" id="followUp" formControlName="followUp" class="material-input" />
+
+      <!-- Attempts and Consultation -->
+      <div class="form-wrapper">
+        <div class="form-group">
+          <div class="label-wrapper">
+            <label for="attempts">Attempts</label>
+            <button type="button" class="add-button" (click)="addAttempt()">+ Stamp Date</button>
+          </div>
+          <input type="text" id="attempts" formControlName="attempts" class="material-input" />
+        </div>
+        <div class="form-group">
+          <div class="label-wrapper">
+            <label for="consultation">Consultation</label>
+            <button type="button" class="add-button" (click)="stampDate()">+ Stamp Date</button>
+          </div>
+          <input type="text" id="consultation" formControlName="consultation" class="material-input" />
+        </div>
       </div>
+
+      <!-- Contacted and Follow Up -->
+      <div class="form-wrapper" >
+        <div class="form-group">
+          <label for="contacted">Contacted</label>
+          <select id="contacted" formControlName="contacted" class="material-input">
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="followUp">Follow Up</label>
+          <input type="text" id="followUp" formControlName="followUp" class="material-input" />
+        </div>
+      </div>
+
+
     </div>
 
-    <button type="submit" class="material-button">Save Changes</button>
   </form>
 </div>
 

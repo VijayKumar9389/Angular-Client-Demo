@@ -1,0 +1,72 @@
+.report-wrapper {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Display six items in a row */
+  background-color: #fff;
+  overflow: hidden;
+  border-bottom: 1px solid #ccc;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr); /* Display four items in a row on larger tablets and laptops */
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr); /* Display three items in a row on smaller tablets */
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(2, 1fr); /* Display two items in a row on phones */
+  }
+
+  .report-item-wrapper {
+    padding: 1rem;
+    text-align: center;
+
+    p {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      color: #333;
+    }
+
+    label {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #007bff; /* Change the color to match your design */
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background-color: rgba(0, 123, 255, 0.3); /* Adjust the alpha value (0.0 to 1.0) as needed */
+      margin-top: 5px;
+      position: relative;
+
+      .progress {
+        height: 100%;
+        background-color: #007bff; /* Progress bar color */
+        width: 0;
+        transition: width 0.3s ease-in-out;
+        position: relative;
+        overflow: hidden;
+
+        span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #fff; /* Text color for the number */
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr); /* Display two items in a row on mobile */
+    gap: 1rem; /* Add some gap between items */
+  }
+}

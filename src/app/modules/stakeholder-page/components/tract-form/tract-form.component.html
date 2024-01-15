@@ -1,1 +1,26 @@
-<p>tract-form works!</p>
+<form class="tract-form" (ngSubmit)="handleSubmit()">
+  <div class="form-group">
+    <label>Structure</label>
+    <input type="text" [(ngModel)]="structure" name="structure" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Interest</label>
+    <input type="text" [(ngModel)]="interest" name="interest" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Occupants</label>
+    <input type="number" [(ngModel)]="occupants" name="occupants" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Works Land</label>
+    <input type="checkbox" [(ngModel)]="worksLand" name="worksLand" class="form-checkbox" />
+  </div>
+  <div class="form-group">
+    <label>Tract Comments</label>
+    <textarea [(ngModel)]="tractComments" name="tractComments" class="form-control"></textarea>
+  </div>
+  <div class="form-btn-wrapper">
+    <button type="submit" class="btn-submit">Submit</button>
+    <button type="button" (click)="handleStakeholderSelection()">View</button>
+  </div>
+</form>

@@ -1,7 +1,27 @@
-<p>tract-list works!</p>
+<ul class="tract-list">
 
-<ul>
-  <li *ngFor="let tract of tractRecords">
-    {{tract!.tract}}
+  <div class="tract-list-header">
+    <h2>Tracts</h2>
+  </div>
+
+  <li *ngFor="let tract of tractRecords" class="tract-records">
+
+    <div class="tract-header">
+      <h3>TRACT {{ tract.tract }}</h3>
+      <p>
+        Carrying: <span class="list-item">{{tract.commodity}}</span>
+        <span class="separator">|</span>
+        Currently: <span class="list-item">{{tract.pipelineStatus}}</span>
+        <span class="separator">|</span>
+        Pin: <span class="list-item">{{tract.pin}}</span>
+      </p>
+    </div>
+
+    <div class="tract-list-wrapper" >
+      <app-tract-item [tractNo]="tract.tract" [projectId]="'1'"></app-tract-item>
+    </div>
+
   </li>
+
 </ul>
+

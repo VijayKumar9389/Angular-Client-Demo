@@ -1,0 +1,33 @@
+<div class="delivery-container">
+
+  <div class="delivery-header">
+    <h1>Delivery Details</h1>
+    <button class="btn btn-danger">Cancel Delivery</button>
+  </div>
+
+  <div class="delivery-details">
+    <h1>{{delivery.destination}}</h1>
+    <p class="delivery-info">
+      <span class="info-label">Notes:</span>
+      {{ delivery.notes }}
+    </p>
+    <p class="delivery-info">
+      <span class="info-label">Route:</span>
+      {{ delivery.route }}
+    </p>
+    <p class="delivery-info">
+      <span class="info-label">Status:</span>
+      {{ delivery.status }}
+    </p>
+    <p class="delivery-info">
+      <span class="info-label">Date:</span>
+      {{ delivery.date }}
+    </p>
+  </div>
+
+  <div class="delivery-actions">
+    <button class="btn btn-success">Add Package</button>
+  </div>
+
+  <app-package-list [packages]="delivery.packages"></app-package-list>
+</div>

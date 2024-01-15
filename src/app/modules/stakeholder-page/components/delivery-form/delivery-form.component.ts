@@ -44,6 +44,11 @@ export class DeliveryFormComponent implements OnInit {
     });
   }
 
+  isAddonSelected(): boolean {
+    const deliveryMethod = this.createDeliveryForm.get('deliveryMethod')?.value;
+    return deliveryMethod === 'addon';
+  }
+
   ngOnInit(): void {
     this.fetchPackageTypes();
   }
@@ -59,6 +64,7 @@ export class DeliveryFormComponent implements OnInit {
 
   createDelivery(): void {
     if (this.createDeliveryForm.valid) {
+
       const formData: DeliveryDTO = {
         date: this.createDeliveryForm.value.deliveryDate,
         status: this.createDeliveryForm.value.deliveryStatus,
@@ -66,8 +72,8 @@ export class DeliveryFormComponent implements OnInit {
         destination: this.createDeliveryForm.value.destination,
         delivery_method: this.createDeliveryForm.value.deliveryMethod,
         notes: this.createDeliveryForm.value.notes,
-        projectId: 1, // Replace with the actual project ID
-        stakeholderId: 1, // Replace with the actual stakeholder ID
+        projectId: 1,
+        stakeholderId: Number(this.stakeholderId),
         packageTypeId: this.createDeliveryForm.value.selectedPackageType
       };
 

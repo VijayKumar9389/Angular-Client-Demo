@@ -1,4 +1,35 @@
-<h1>{{ stakeholder.name }}</h1>
-<app-stakeholder-form [stakeholder]="stakeholder"></app-stakeholder-form>
-<app-delivery-form [stakeholderId]="stakeholder.id.toString()" [projectId]="projectId"></app-delivery-form>
+<div class="stakeholder-page-container">
+
+  <div class="header">
+    <button>Back</button>
+    <h1>{{ stakeholder.name }}</h1>
+<!--    <div class="header-buttons">-->
+<!--      <button (click)="openModal()">Open Delivery Form</button>-->
+<!--      <button (click)="triggerSubmit()">Submit</button>-->
+<!--    </div>-->
+  </div>
+
+  <app-stakeholder-form [stakeholder]="stakeholder"></app-stakeholder-form>
+  <app-stakeholder-delivery [packageId]="stakeholder.packageId"></app-stakeholder-delivery>
+
+  <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Set Delivery</h2>
+        <button class="close-button" (click)="closeModal()">X</button>
+      </div>
+      <div class="modal-content">
+
+        <div class="submenu">
+          <div (click)="selectComponent('delivery')" [class.selected]="selectedComponent === 'delivery'">Create Delivery</div>
+          <div (click)="selectComponent('package')" [class.selected]="selectedComponent === 'package'">Add To Delivery</div>
+        </div>
+
+        <app-package-form *ngIf="selectedComponent === 'package'" [stakeholderId]="stakeholder.id.toString()" ></app-package-form>
+        <app-delivery-form *ngIf="selectedComponent === 'delivery'" [stakeholderId]="stakeholder.id.toString()" [projectId]="projectId"></app-delivery-form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-tract-list [tractRecords]="stakeholder.tractRecords"></app-tract-list>

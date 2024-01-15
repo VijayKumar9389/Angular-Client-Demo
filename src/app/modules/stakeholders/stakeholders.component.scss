@@ -1,19 +1,55 @@
+// Variables
+$primary-color: #2196F3; // Replace with your primary color
+$accent-color: #FFC107; // Replace with your accent color
+$background-color: #ffffff; // Replace with your background color
+$text-color: #333; // Replace with your text color
+
 .project-container {
   margin: 0 auto;
-  padding: 20px;
 }
 
+// Header Styles
 .page-header {
-  text-align: center;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: $background-color;
+  margin: 0 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+  position: relative;
 
-  h1 {
-    font-size: 2.5rem;
-    color: #1976D2;
+  @media (max-width: 768px)  {
+    flex-direction: column;
+    align-items: flex-start;
   }
+
+  .header-info {
+    flex: 1;
+    h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #007bff;
+    }
+
+    h2 {
+      margin: 4px 0;
+      color: grey;
+      text-transform: uppercase;
+      font-weight: lighter;
+    }
+
+    label {
+      font-size: 14px;
+      color: $background-color;
+    }
+  }
+
 }
 
 .project-details {
+  margin-bottom: 1rem;
+
   h2 {
     font-size: 1.5rem;
     color: #1976D2;
@@ -30,7 +66,7 @@
     background-color: #ffffff;
     padding: 16px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 
     .label {
       font-weight: bold;
@@ -49,4 +85,23 @@
     color: #1976D2;
     margin-bottom: 10px;
   }
+
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 10px;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+
+
+
 }

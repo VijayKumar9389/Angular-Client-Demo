@@ -22,8 +22,6 @@ export class ProjectService {
       );
   }
 
-
-
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);
     return throwError('Something went wrong. Please try again later.');

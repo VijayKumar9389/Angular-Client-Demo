@@ -1,0 +1,223 @@
+.stakeholder-list-container {
+
+
+  .stakeholder-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd; /* Add a border if needed */
+
+    h2 {
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: lighter;
+    }
+
+    .submit-button {
+      padding: 10px 20px;
+      background-color: #4285f4; /* Google Blue, adjust as needed */
+      color: #fff; /* White text for contrast */
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+
+      &:hover {
+        background-color: #0056b3; /* Darker shade on hover, adjust as needed */
+      }
+    }
+  }
+
+  label {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .stakeholder-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .stakeholder-list-item {
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        .stakeholder-name {
+          color: #3498db;
+        }
+      }
+
+      .stakeholder-item {
+        box-sizing: border-box;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+
+        .stakeholder-name {
+          transition: ease-in-out 0.3s;
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+
+        }
+
+        .stakeholder-tract-wrapper {
+          .stakeholder-info {
+            display: flex;
+            flex-wrap: wrap;
+
+            .stakeholder-contact-info {
+              margin-right: 16px;
+              margin-bottom: 16px;
+              display: flex;
+              align-items: center;
+
+              .info-status {
+                padding: 8px 16px;
+                border-radius: 20px;
+                text-align: center;
+                margin-right: 8px;
+                display: flex;
+                align-items: center;
+
+                &.green {
+                  background-color: rgba(76, 175, 80, 0.8);
+                  color: #fff;
+                }
+
+                &.red {
+                  background-color: rgba(244, 67, 54, 0.8);
+                  color: #fff;
+                }
+
+                &.yellow {
+                  background-color: rgba(255, 235, 59, 0.8);
+                  color: #333;
+                }
+
+                .icon {
+                  width: 16px;
+                  height: 16px;
+                  margin-right: 4px;
+                }
+              }
+            }
+
+            .info-item {
+              margin-bottom: 8px;
+
+              .info-label {
+                font-weight: bold;
+                margin-right: 8px;
+                color: #555;
+              }
+            }
+          }
+
+          .stakeholder-item-tracts {
+            list-style-type: none;
+            padding: 0;
+
+            .stakeholder-tract-msg{
+              font-size: 14px;
+              color: black;
+              font-weight: bold;
+              margin-bottom: 8px;
+            }
+
+            .stakeholder-tract-item {
+              background-color: #f5f5f5;
+              padding: 8px;
+              border-radius: 4px;
+              margin-bottom: 8px;
+
+              .tract-label {
+                font-size: 14px;
+                color: #333;
+              }
+
+            }
+          }
+        }
+
+
+        .stakeholder-list-wrapper {
+          width: 100%;
+          margin-bottom: 1rem;
+
+          .stakeholder-contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
+
+            .info-item {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              margin-bottom: 8px;
+              padding: 0 8px;
+              border-left: 1px solid #ccc;
+              transition: background-color 0.3s ease; // Add a smooth transition effect
+
+              &:hover {
+                background-color: #f0f0f0; // Define your hover background color
+              }
+
+              .info-lbl {
+                margin-bottom: 4px;
+                color: grey;
+              }
+
+              .info-value {
+                display: flex;
+                align-items: center;
+                color: #333;
+                margin-right: 8px;
+                padding: 5px;
+                border-radius: 4px;
+
+                &.missing {
+                  color: #777;
+                }
+
+                .mat-chip {
+                  margin-right: 4px;
+                }
+
+                &.green {
+                  background-color: rgba(76, 175, 80, 0.2);
+                  color: #4caf50;
+                }
+
+                &.red {
+                  background-color: rgba(244, 67, 54, 0.2);
+                  color: #f44336;
+                }
+
+                &.yellow {
+                  background-color: rgba(255, 235, 59, 0.2);
+                  color: #ffeb3b;
+                }
+              }
+            }
+          }
+
+
+        }
+      }
+    }
+  }
+}

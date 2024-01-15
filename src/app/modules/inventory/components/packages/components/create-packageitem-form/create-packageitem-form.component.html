@@ -1,0 +1,8 @@
+<div *ngIf="items && items.length > 0" class="select-item-container">
+  <label for="itemSelect">Select an Item:</label>
+  <select id="itemSelect" [(ngModel)]="selectedItemId" name="itemSelect">
+    <option *ngFor="let item of items" [value]="item?.id">{{ item?.name }}</option>
+  </select>
+
+  <button (click)="onsubmit()">Select</button>
+</div>

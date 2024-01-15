@@ -3,3 +3,93 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  background-color: #4285f4; /* Google Blue */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: ease-in-out 0.1s;
+
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+h1 {
+  color: #4285f4;
+  text-transform: uppercase;
+  font-size: 1.5rem; /* 32px assuming the base font size is 16px */
+  font-weight: bold;
+}
+
+h2 {
+  color: grey;
+  font-size: 1.25rem; /* 24px */
+  font-weight: 600; /* Semi-Bold */
+}
+
+h3 {
+  color: #333333;
+  font-size: 1rem; /* 20px */
+  font-weight: 600; /* Semi-Bold */
+}
+
+h4{
+  color: #333333
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+label {
+  color: #666;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  appearance: none; /* Remove default checkbox appearance */
+  width: 40px; /* Adjust the width of the switch */
+  height: 20px; /* Adjust the height of the switch */
+  background-color: #ccc; /* Background color when unchecked */
+  border-radius: 10px; /* Make it round */
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 2px; /* Adjust the vertical position */
+    left: 2px; /* Adjust the horizontal position */
+    width: 16px; /* Width of the switch handle */
+    height: 16px; /* Height of the switch handle */
+    background-color: #fff; /* Color of the switch handle */
+    border-radius: 50%; /* Make it round */
+    transition: transform 0.3s; /* Add a smooth transition effect */
+  }
+
+  &:checked::before {
+    transform: translateX(20px); /* Move the switch handle to the right when checked */
+    background-color: #007bff; /* Set switch handle color to blue when checked */
+  }
+}
+
+
+

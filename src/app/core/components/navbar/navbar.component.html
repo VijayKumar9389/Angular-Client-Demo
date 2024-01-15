@@ -1,6 +1,10 @@
-<nav>
-  <a routerLink="/">OnTract</a>
-  <div>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+<!-- Navigation -->
+<nav [ngClass]="{ 'open': isMobileMenuOpen }">
+  <div class="">
     <ul>
       <li routerLinkActive="border-b-2 border-white">
         <a routerLink="/dashboard">Dashboard</a>
@@ -9,21 +13,38 @@
         <a routerLink="/stakeholders">Stakeholders</a>
       </li>
       <li routerLinkActive="border-b-2 border-white">
-        <a routerLink="/delivery">Delivery</a>
+        <a routerLink="/delivery">Deliveries</a>
       </li>
       <li routerLinkActive="border-b-2 border-white">
-        <a routerLink="/items">Items</a>
+        <a routerLink="/inventory">Inventory</a>
       </li>
       <li routerLinkActive="border-b-2 border-white">
-        <a routerLink="/items">Logs</a>
+        <a routerLink="/logs">Logs</a>
       </li>
       <li routerLinkActive="border-b-2 border-white">
-        <a routerLink="/items">Users</a>
+        <a routerLink="/users">Users</a>
       </li>
       <li routerLinkActive="border-b-2 border-white">
-        <a routerLink="/items">Projects</a>
+        <a routerLink="/projects">Projects</a>
       </li>
-      <!-- Add more menu items as needed -->
     </ul>
   </div>
+
+  <div class="user-container">
+    <div class="user-icon">
+      <span class="material-symbols-outlined">
+    person
+  </span>
+    </div>
+    <label class="username"> Username</label>
+  </div>
+
+
+
+  <!-- Hamburger menu icon -->
+  <div class="hamburger-menu" (click)="toggleMobileMenu()">
+    <i class="material-icons">menu</i>
+  </div>
 </nav>
+
+

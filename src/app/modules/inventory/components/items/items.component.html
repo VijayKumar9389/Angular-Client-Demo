@@ -1,0 +1,20 @@
+<div class="items-section">
+  <div class="items-header">
+    <h1>Items</h1>
+    <button id="searchButton" (click)="toggleFilter()">Create Item</button>
+  </div>
+  <app-item-list></app-item-list>
+</div>
+
+
+<div class="modal-overlay" *ngIf="showFilter" (click)="toggleFilter()">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>Add Item</h2>
+      <button (click)="toggleFilter()" class="close-button">X</button>
+    </div>
+    <div class="modal-content">
+      <app-create-item-form></app-create-item-form>
+    </div>
+  </div>
+</div>

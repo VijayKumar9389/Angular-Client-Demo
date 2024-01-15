@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Delivery } from '../models/delivery.model';
+import { Router } from '@angular/router'; // Import Router from @angular/router
 import { DeliveryDTO } from '../models/delivery.model'; // Import DeliveryDTO from your model
 
 @Injectable({
@@ -13,7 +14,7 @@ export class DeliveryService {
 
   private apiUrl = 'http://localhost:3005/delivery';
 
-  constructor(private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   getDelivery(deliveryId: string): Observable<Delivery[]> {
     const url: string = `${this.apiUrl}/getbyproject/${deliveryId}`;
@@ -43,13 +44,16 @@ export class DeliveryService {
             console.log('Delivery created successfully!');
             observer.next(response);
             observer.complete();
-          },
-          (error) => {
-            console.error('Error creating delivery:', error);
-            observer.error('Error creating delivery');
           }
         );
       }, 1000);
+    });
+  }
+
+  selectDelivery(delivery: Delivery, projectId: number): void {
+    console.log('navigate to delivery page')
+    this.router.navigate(['/delivery', delivery.id], {
+      state: { data: delivery, name: 'angular' },
     });
   }
 

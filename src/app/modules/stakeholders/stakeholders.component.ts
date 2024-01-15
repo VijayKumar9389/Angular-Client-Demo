@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from "../../core/models/project.model";
 import { ProjectService } from "../../core/services/project.service";
-import {StakeholderTableComponent} from "./components/stakeholder-table/stakeholder-table.component"; // Update the path accordingly
+import {StakeholderListComponent} from "./components/stakeholder-list/stakeholder-list.component";
+import {StakeholderInputComponent} from "./components/stakeholder-input/stakeholder-input.component";
+import {NgIf} from "@angular/common";
+import {StakeholderStatsComponent} from "./components/stakeholder-stats/stakeholder-stats.component"; // Update the path accordingly
 
 @Component({
   selector: 'app-stakeholders',
   standalone: true,
-  imports: [StakeholderTableComponent],
+  imports: [StakeholderListComponent, StakeholderInputComponent, NgIf, StakeholderStatsComponent],
   providers: [ProjectService],
   templateUrl: './stakeholders.component.html',
   styleUrl: './stakeholders.component.scss'
@@ -14,6 +17,11 @@ import {StakeholderTableComponent} from "./components/stakeholder-table/stakehol
 
 export class StakeholdersComponent implements OnInit {
   projectData!: Project;
+  showFilter: boolean = false;
+
+  toggleFilter() {
+    this.showFilter = !this.showFilter;
+  }
 
   constructor(private projectService: ProjectService) {}
 

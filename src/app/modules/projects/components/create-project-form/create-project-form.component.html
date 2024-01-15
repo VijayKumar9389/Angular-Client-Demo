@@ -1,0 +1,43 @@
+<!-- your-component.component.html -->
+
+<!-- Your project details form -->
+<div>
+  <h1>Create Project</h1>
+  <div class="project-details" [formGroup]="projectForm">
+    <label>Project Name:</label>
+    <input type="text" formControlName="projectName" />
+
+    <label>Year:</label>
+    <input type="number" formControlName="projectYear" />
+
+    <label>Project Notes:</label>
+    <input type="text" formControlName="projectNotes" />
+
+    <label>Survey Link:</label>
+    <input type="text" formControlName="projectSurveyLink" />
+  </div>
+
+  <!-- File input for Excel upload -->
+  <input type="file" (change)="handleFileUpload($event)" />
+
+  <!-- Button to trigger the save action -->
+  <button (click)="handleSaveClick()">Save</button>
+
+  <!-- Display processed data if available -->
+  <div *ngIf="jsonData && jsonData.length > 0">
+    <h2>Processed Data</h2>
+    <table>
+      <thead>
+      <tr>
+        <th *ngFor="let header of Object.keys(jsonData ? jsonData : [0])">{{ header }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of jsonData">
+        <td *ngFor="let cell of Object.values(row)">{{ cell }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

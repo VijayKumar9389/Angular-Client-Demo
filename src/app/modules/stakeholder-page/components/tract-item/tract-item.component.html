@@ -1,1 +1,4 @@
-<p>tract-item works!</p>
+<div *ngFor="let stakeholder of stakeholderList" class="tract-item">
+  <h3>{{ stakeholder.name }}</h3>
+  <app-tract-form [tractRecord]="stakeholder.tractRecords[0]" [stakeholder]="stakeholder"></app-tract-form>
+</div>
