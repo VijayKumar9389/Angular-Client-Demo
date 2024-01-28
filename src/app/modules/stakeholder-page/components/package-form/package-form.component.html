@@ -10,9 +10,16 @@
     <div class="form-group">
       <label for="selectedDelivery">Select Delivery:</label>
       <select id="selectedDelivery" formControlName="selectedDelivery">
-        <option *ngFor="let delivery of deliveries" [value]="delivery.id">Dest: {{ delivery.destination }}</option>
+        <option *ngFor="let delivery of deliveries" [value]="delivery.id">
+          Dest: {{ delivery.destination }}
+          <ng-container *ngFor="let package of delivery.packages">
+            - {{ package.stakeholder.name }}
+          </ng-container>
+        </option>
       </select>
     </div>
+
+
 
     <div class="btn-container">
       <button type="submit">Submit</button>

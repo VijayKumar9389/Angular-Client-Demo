@@ -16,8 +16,17 @@ export class DeliveryService {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  getDelivery(deliveryId: string): Observable<Delivery[]> {
+  getDelivery(deliveryId: number): Observable<Delivery[]> {
     const url: string = `${this.apiUrl}/getbyproject/${deliveryId}`;
+    console.log('Sending request to:', url);
+    return this.http.get<Delivery[]>(url, { withCredentials: true })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getDeliverybyPackageId(packageId: number): Observable<Delivery[]> {
+    const url: string = `${this.apiUrl}/getbypackage/${packageId}`;
     console.log('Sending request to:', url);
     return this.http.get<Delivery[]>(url, { withCredentials: true })
       .pipe(

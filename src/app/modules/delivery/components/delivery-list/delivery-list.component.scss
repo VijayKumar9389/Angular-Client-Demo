@@ -4,6 +4,8 @@
   gap: 16px;
   margin: 1rem;
 
+
+
   .delivery-item {
     background-color: #fff;
     border-radius: 8px;
@@ -14,7 +16,6 @@
 
     &:hover {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
       h3 {
         color: #3498db;
       }
@@ -97,4 +98,10 @@
       }
     }
   }
+}
+
+.no-deliveries {
+  margin: 20px; // Adjust spacing as needed
+  color: #888; // Customize the color
+  font-style: italic;
 }

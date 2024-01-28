@@ -6,6 +6,7 @@
   #dropdownInput,
   #searchInput,
   button {
+    height: 40px; // Set a consistent height
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -19,11 +20,11 @@
   }
 
   #searchInput {
-    flex: 1; /* Take up remaining width */
-    min-width: 0; /* Allow the input to shrink */
+    flex: 1;
+    min-width: 0;
     cursor: text;
+    padding: 10px;
     margin-left: 10px;
-    height: 100%;
   }
 
   @media (max-width: 767px) {
@@ -47,13 +48,13 @@
 
   .material-symbols-outlined {
     position: absolute;
-    left: 25px; /* Adjust the left position as needed */
+    left: 25px;
     cursor: pointer;
-    color: #555; /* Adjust the color as needed */
+    color: #555;
   }
 
   #searchInput {
-    padding-left: 50px; /* Adjust the padding-left to make room for the icon */
+    padding-left: 50px;
   }
 }
 
@@ -62,20 +63,21 @@
 
   button {
     cursor: pointer;
-    background-color: #f8f9fa; /* Light gray background for other buttons */
-    color: #333; /* Dark text color */
+    background-color: #f8f9fa;
+    color: #333;
     transition: background-color 0.3s ease;
     margin-left: 10px;
     display: flex;
     align-items: center;
     width: fit-content;
+    height: 40px; // Set a consistent height
 
     span {
       margin-right: 5px;
     }
 
     &:hover {
-      background-color: #e2e6ea; /* Slightly darker background on hover */
+      background-color: #e2e6ea;
     }
   }
 }

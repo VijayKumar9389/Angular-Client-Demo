@@ -1,5 +1,43 @@
-<div class="stakeholder-delivery">
-  <div *ngIf="packageId !== null">
-  <h1>Testing: {{packageId}}</h1>
-  </div>
+<div class="package-list-container">
+  <ul class="package-list">
+    <li *ngFor="let deliveryPackage of delivery?.packages" class="package-item">
+
+      <div class="package-header">
+        <h3 class="stakeholder-name">{{ deliveryPackage.stakeholder?.name || 'N/A' }}</h3>
+      </div>
+
+      <div class="stakeholder-details">
+        <span class="package-info"><strong>Street Address:</strong> {{ deliveryPackage.stakeholder?.streetAddress }}</span>
+        <span class="package-info"><strong>Mailing Address:</strong> {{ deliveryPackage.stakeholder?.mailingAddress }}</span>
+        <span class="package-info"><strong>Phone Number/s:</strong> {{ deliveryPackage.stakeholder?.phoneNumber }}</span>
+        <span class="package-info"><strong>Contacted:</strong> {{ deliveryPackage.stakeholder?.contacted }}</span>
+      </div>
+
+      <div class="package-details">
+
+        <!-- Package Type Details Section -->
+        <div class="package-type-details">
+          <h4 class="package-type-name">{{ deliveryPackage.packageType?.name }}</h4>
+          <span class="package-type-description">{{ deliveryPackage.packageType?.notes }}</span>
+        </div>
+
+        <!-- Package Items Grid -->
+        <div class="package-items-grid">
+          <div *ngFor="let packageItem of deliveryPackage.packageType?.items" class="package-item">
+            <img
+              [src]="'http://localhost:3005/images/' + packageItem?.item?.image"
+              [alt]="'Image for ' + packageItem?.item?.name"
+              class="item-image"
+            />
+
+            <div class="item-details">
+              <span class="package-item-name">{{ packageItem?.item?.name }}</span>
+              <span class="package-item-quantity">{{ packageItem?.item?.description }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </li>
+  </ul>
 </div>

@@ -12,6 +12,7 @@ export class StakeholderService {
 
   constructor(private router: Router, private http: HttpClient) { }
 
+  // Update stakeholder info by id
   updateStakeholder(stakeholderId: number, data: StakeholderUpdateDTO): Observable<any> {
     try {
       const endpoint: string = `http://localhost:3005/stakeholder/update/${stakeholderId}`;
@@ -22,6 +23,7 @@ export class StakeholderService {
     }
   }
 
+  // Fetch all stakeholders by project ID including tractRecords
   getAllUniqueStreetAddresses(projectId: number): Observable<string[]> {
     try {
       const endpoint: string = `http://localhost:3005/stakeholder/getAllUniqueStreetAddresses/${projectId}`;
@@ -46,6 +48,16 @@ export class StakeholderService {
       return this.http.get<any>(endpoint);
     } catch (error) {
       console.error('Error fetching stakeholder summary:', error);
+      throw error;
+    }
+  }
+
+  getStakeholdersByProjectId(projectId: number): Observable<Stakeholder[]> {
+    try {
+      const endpoint: string = `http://localhost:3005/stakeholder/getStakeholdersByProjectId/${projectId}`;
+      return this.http.get<Stakeholder[]>(endpoint);
+    } catch (error) {
+      console.error('Error fetching stakeholders:', error);
       throw error;
     }
   }

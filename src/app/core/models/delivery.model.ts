@@ -3,8 +3,6 @@ import {PackageItemDTO} from "./item.model";
 
 // models.ts
 export interface DeliveryDTO {
-  date: string;
-  status: string;
   projectId: number;
   route: string; // Include the route field
   destination: string; // Include the destination field

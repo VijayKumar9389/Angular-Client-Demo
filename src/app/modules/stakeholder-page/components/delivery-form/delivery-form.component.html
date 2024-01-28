@@ -1,66 +1,63 @@
+<!-- Create Delivery Form -->
 <form [formGroup]="createDeliveryForm" (ngSubmit)="createDelivery()" class="create-delivery-form">
-  <div *ngIf="error" class="error-message">{{ error }}</div>
 
-  <label>
-    Delivery Date:
-    <input type="text" formControlName="deliveryDate" />
-    <div *ngIf="createDeliveryForm.get('deliveryDate')?.hasError('required')">Delivery Date is required.</div>
-  </label>
-
-  <label>
-    Delivery Status:
-    <input type="text" formControlName="deliveryStatus" />
-    <div *ngIf="createDeliveryForm.get('deliveryStatus')?.hasError('required')">Delivery Status is required.</div>
-  </label>
-
-  <label>
-    Notes:
-    <textarea formControlName="notes"></textarea>
-  </label>
-
-  <label>
-    Package Type:
-    <select formControlName="selectedPackageType">
-      <option value="" disabled>Select a Package Type</option>
-      <option *ngFor="let packageType of packageTypes" [value]="packageType.id">{{ packageType.name }}</option>
-    </select>
-    <div *ngIf="createDeliveryForm.get('selectedPackageType')?.hasError('required')">Package Type is required.</div>
-  </label>
-
-  <label>
-    Delivery Method:
-    <select formControlName="deliveryMethod">
-      <option value="person">Person</option>
-      <option value="mail">Mail</option>
-      <option value="addon">Add-on</option>
-    </select>
-    <div *ngIf="createDeliveryForm.get('deliveryMethod')?.hasError('required')">Delivery Method is required.</div>
-  </label>
-
-  <!-- Render the second dropdown conditionally -->
-  <div *ngIf="isAddonSelected()">
+  <!-- Step 1: Select Delivery Method -->
+  <div *ngIf="currentStep === 1">
     <label>
-      Add-on Options:
-      <select formControlName="addonOptions">
-        <!-- Add options for the addon dropdown here -->
+      Delivery Method:
+      <select formControlName="deliveryMethod" (change)="onDeliveryMethodChange()">
+        <option disabled>Select a Delivery Method</option>
+        <option value="person">Person</option>
+        <option value="mail">Mail</option>
+      </select>
+      <div *ngIf="createDeliveryForm.get('deliveryMethod')?.hasError('required')">Delivery Method is required.</div>
+    </label>
+    <div class="btn-container">
+      <button type="button" (click)="nextStep()" [disabled]="createDeliveryForm.get('deliveryMethod')?.invalid">Next
+      </button>
+    </div>
+  </div>
+
+  <!-- Step 2: Additional Details -->
+  <div *ngIf="currentStep === 2">
+    <label>
+      Package Type:
+      <select formControlName="selectedPackageType">
+        <option value="" disabled>Select a Package Type</option>
+        <option *ngFor="let packageType of packageTypes" [value]="packageType.id">{{ packageType.name }}</option>
+      </select>
+      <div *ngIf="createDeliveryForm.get('selectedPackageType')?.hasError('required')">Package Type is required.</div>
+    </label>
+    <label>
+      Notes:
+      <textarea formControlName="notes"></textarea>
+    </label>
+
+    <label>
+      Route:
+      <input type="text" formControlName="route"/>
+      <div *ngIf="createDeliveryForm.get('route')?.hasError('required')">Route is required.</div>
+    </label>
+
+    <label>
+      Destination Type:
+      <select formControlName="destinationType" (change)="changeDestinationType()">
+        <option value="" disabled>Select a Destination Type</option>
+        <option *ngIf="createDeliveryForm.get('location')?.value !== ''" value="current">Current</option>
+        <option value="custom">Custom</option>
       </select>
     </label>
+
+    <label *ngIf="createDeliveryForm.get('destinationType')?.value === 'custom'">
+      Destination:
+      <input type="text" formControlName="destination"/>
+      <div *ngIf="createDeliveryForm.get('destination')?.hasError('required')">Destination is required.</div>
+    </label>
+
+    <div class="btn-container">
+      <button type="button" (click)="prevStep()">Back</button>
+      <button type="submit" [disabled]="createDeliveryForm.invalid">Create Delivery</button>
+    </div>
+
   </div>
-
-  <label>
-    Route:
-    <input type="text" formControlName="route" />
-    <div *ngIf="createDeliveryForm.get('route')?.hasError('required')">Route is required.</div>
-  </label>
-
-  <label>
-    Destination:
-    <input type="text" formControlName="destination" />
-    <div *ngIf="createDeliveryForm.get('destination')?.hasError('required')">Destination is required.</div>
-  </label>
-
-  <div class="btn-container">
-    <button type="submit" [disabled]="createDeliveryForm.invalid">Create Delivery</button>
-  </div>
-
 </form>

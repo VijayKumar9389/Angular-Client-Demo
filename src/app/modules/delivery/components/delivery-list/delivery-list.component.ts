@@ -20,4 +20,8 @@ export class DeliveryListComponent {
     this.deliveryService.selectDelivery(delivery, projectId);
   }
 
+  hasDeliveries(): boolean {
+    return this.deliveries.length > 0;
+  }
+
 }

@@ -4,6 +4,8 @@ import {PackageService} from "../../../../core/services/package.service";
 import {CommonModule, NgIf} from "@angular/common";
 import {DeliveryService} from "../../../../core/services/delivery.service";
 import {FormGroup, FormBuilder, ReactiveFormsModule} from "@angular/forms";
+import {ProjectService} from "../../../../core/services/project.service";
+import {Project} from "../../../../core/models/project.model";
 
 @Component({
   selector: 'app-package-form',
@@ -13,7 +15,7 @@ import {FormGroup, FormBuilder, ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     ReactiveFormsModule
   ],
-  providers: [PackageService, DeliveryService],
+  providers: [PackageService, DeliveryService, ProjectService],
   templateUrl: './package-form.component.html',
   styleUrl: './package-form.component.scss'
 })
@@ -24,12 +26,14 @@ export class PackageFormComponent implements OnInit {
   packageForm!: FormGroup;
   packageTypes: PackageTypeDTO[] = [];
   deliveries: Delivery[] = [];
+  selectedProject!: Project | null;
 
   // Inject the FormBuilder, PackageService, and DeliveryService
   constructor(
     private fb: FormBuilder,
     private packageService: PackageService,
-    private deliveryService: DeliveryService
+    private deliveryService: DeliveryService,
+    private projectService: ProjectService
   ) {}
 
   // Initialize the form with default values or stakeholder values
@@ -37,6 +41,10 @@ export class PackageFormComponent implements OnInit {
     this.packageForm = this.fb.group({
       selectedPackageType: [''],
       selectedDelivery: ['']
+    });
+
+    this.projectService.selectedProject$.subscribe((selectedProject: Project | null): void => {
+      this.selectedProject = selectedProject;
     });
 
     // Fetch package types and delivery when the component initializes
@@ -78,7 +86,8 @@ export class PackageFormComponent implements OnInit {
 
   // Fetch delivery
   fetchDeliveries(): void {
-    this.deliveryService.getDelivery('1') // Replace with the actual project ID
+    const projectId = this.selectedProject?.id ?? 0; // Replace 0 with the appropriate default project ID
+    this.deliveryService.getDelivery(projectId)
       .subscribe(
         (deliveries: Delivery[]): void => {
           this.deliveries = deliveries;
@@ -86,4 +95,5 @@ export class PackageFormComponent implements OnInit {
         }
       );
   }
+
 }

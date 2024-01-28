@@ -1,33 +1,7 @@
 <div class="project-container">
 
   <!-- Page Header -->
-  <div class="page-header">
-    <div class="header-info">
-      <h1>Stakeholders</h1>
-      <h2>{{ projectData?.name }} {{projectData?.year}}</h2>
-    </div>
-    <button>Switch Project</button>
-  </div>
-
-  <!-- Project Details -->
-  <div class="project-details">
-    <!--
-    <div class="details-grid">
-      <div class="detail-item">
-        <p class="label">Year:</p>
-        <p>{{ projectData?.year }}</p>
-      </div>
-      <div class="detail-item">
-        <p class="label">Notes:</p>
-        <p>{{ projectData?.notes }}</p>
-      </div>
-      <div class="detail-item">
-        <p class="label">Survey Link:</p>
-        <p>{{ projectData?.surveyLink }}</p>
-      </div>
-    </div>
-    -->
-  </div>
+<app-project-header [pageName]="'Stakeholders'"></app-project-header>
 
   <!-- Stakeholder Input -->
   <app-stakeholder-input></app-stakeholder-input>
@@ -35,7 +9,7 @@
   <!-- Stakeholder Table -->
   <div class="stakeholder-table">
     <div class="stakeholder-table-wrapper">
-      <app-stakeholder-list [stakeholders]="projectData?.stakeholders"></app-stakeholder-list>
+      <app-stakeholder-list [stakeholders]="stakeholders"></app-stakeholder-list>
     </div>
   </div>
 

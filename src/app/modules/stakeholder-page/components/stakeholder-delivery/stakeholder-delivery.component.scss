@@ -1,0 +1,100 @@
+.package-list-container {
+  ul.package-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li.package-item {
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 8px;
+
+      .package-header {
+        margin-bottom: 10px;
+
+        .stakeholder-name {
+          font-size: 18px;
+          font-weight: bold;
+          color: #333;
+        }
+      }
+
+      .stakeholder-details {
+        display: flex;
+        margin-bottom: 1rem;
+
+        span {
+          display: block;
+          margin-bottom: 5px;
+        }
+
+        .package-id, .package-status, .package-actions {
+          font-size: 14px;
+          color: #666;
+        }
+
+        .package-id {
+          font-weight: bold;
+        }
+      }
+
+      .package-details {
+        background-color: #fafafa;
+        border-radius: 4px;
+        padding: 10px;
+
+        .package-type-details {
+          margin-bottom: 10px;
+
+          .package-type-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+          }
+
+          .package-type-description {
+            font-size: 14px;
+            color: #666;
+          }
+        }
+
+        .package-items-grid {
+          display: flex;
+          flex-wrap: wrap;
+
+          padding: 10px;
+
+          .package-item {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+            padding: 10px;
+
+            img.item-image {
+              width: 100px;
+              height: 100px;
+              object-fit: cover;
+              border-radius: 4px;
+              margin-bottom: 5px;
+            }
+
+            .item-details {
+              display: flex;
+              flex-direction: column;
+              text-align: left;
+              font-size: 14px;
+              color: #666;
+
+              .package-item-name {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

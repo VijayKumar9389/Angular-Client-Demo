@@ -34,7 +34,8 @@ h1 {
 h2 {
   color: grey;
   font-size: 1.25rem; /* 24px */
-  font-weight: 600; /* Semi-Bold */
+  text-transform: uppercase;
+  font-weight: lighter;
 }
 
 h3 {

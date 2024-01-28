@@ -1,4 +1,8 @@
-<div class="delivery-list">
+<div
+  *ngIf="deliveries.length > 0; else noDeliveries"
+  class="delivery-list">
+
+
   <div *ngFor="let delivery of deliveries" (click)="navigateToDeliveryPage(delivery, delivery.id)"
        class="delivery-item">
 
@@ -37,6 +41,11 @@
       </tr>
       </tbody>
     </table>
-
   </div>
 </div>
+
+<ng-template #noDeliveries>
+  <div class="no-deliveries">
+    <h2>No deliveries planned</h2>
+  </div>
+</ng-template>

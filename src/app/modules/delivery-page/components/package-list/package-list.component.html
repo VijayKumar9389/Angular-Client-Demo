@@ -12,19 +12,17 @@
         <span class="package-status"><strong>Phone Number/s:</strong> {{ deliveryPackage.stakeholder?.phoneNumber }}</span>
         <span class="package-status"><strong>Contacted:</strong> {{ deliveryPackage.stakeholder?.contacted }}</span>
         <button class="view-button" (click)="navigateToStakeholderPage(deliveryPackage.stakeholder, deliveryPackage.stakeholder.id)">View Stakeholder</button>
-
       </div>
-
 
       <div class="package-details">
         <!-- Change Package Type Section -->
         <div class="change-package-type">
-          <select [(ngModel)]="deliveryPackage.packageType.id" class="package-type-dropdown">
+          <select [(ngModel)]="selectedPackageTypeId" class="package-type-dropdown">
             <option *ngFor="let packageType of packageTypes" [value]="packageType.id">
               {{ packageType.name }}
             </option>
           </select>
-          <button class="btn-primary submit-button">
+          <button class="btn-primary submit-button" (click)="changePackagePackageType(deliveryPackage.id, selectedPackageTypeId)">
             Change Package Type
           </button>
         </div>
@@ -53,7 +51,7 @@
 
       <!-- Package Actions Section -->
       <div class="package-actions">
-        <button class="btn-danger remove-button">
+        <button class="btn-danger remove-button" (click)="cancelPackage(deliveryPackage.id, deliveryPackage.stakeholder.id)">
           Cancel Package
         </button>
       </div>

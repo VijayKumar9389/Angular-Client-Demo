@@ -130,6 +130,12 @@
           .stakeholder-item-tracts {
             list-style-type: none;
             padding: 0;
+            display: flex;
+            align-items: center;
+
+            @media (max-width: 768px){
+              flex-direction: column;
+            }
 
             .stakeholder-tract-msg{
               font-size: 14px;
@@ -139,10 +145,16 @@
             }
 
             .stakeholder-tract-item {
-              background-color: #f5f5f5;
+              background-color: #f0f0f0;
               padding: 8px;
               border-radius: 4px;
-              margin-bottom: 8px;
+              margin-right: 1rem;
+
+              @media (max-width: 768px){
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 8px;
+              }
 
               .tract-label {
                 font-size: 14px;
@@ -166,15 +178,10 @@
             .info-item {
               display: flex;
               flex-direction: column;
-              align-items: flex-start;
+              align-items: center;
               margin-bottom: 8px;
               padding: 0 8px;
-              border-left: 1px solid #ccc;
               transition: background-color 0.3s ease; // Add a smooth transition effect
-
-              &:hover {
-                background-color: #f0f0f0; // Define your hover background color
-              }
 
               .info-lbl {
                 margin-bottom: 4px;
@@ -182,19 +189,12 @@
               }
 
               .info-value {
-                display: flex;
-                align-items: center;
                 color: #333;
-                margin-right: 8px;
                 padding: 5px;
                 border-radius: 4px;
 
                 &.missing {
                   color: #777;
-                }
-
-                .mat-chip {
-                  margin-right: 4px;
                 }
 
                 &.green {
@@ -214,7 +214,6 @@
               }
             }
           }
-
 
         }
       }

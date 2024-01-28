@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { DeliveryService } from '../../../../core/services/delivery.service';
 import {PackageService} from "../../../../core/services/package.service";
-
 import { DeliveryDTO } from '../../../../core/models/delivery.model';
 import { PackageTypeDTO } from '../../../../core/models/delivery.model';
 import { catchError, finalize } from 'rxjs/operators';
 import {CommonModule} from "@angular/common";
+import {Stakeholder} from "../../../../core/models/stakeholder.model";
 
 @Component({
   selector: 'app-delivery-form',
@@ -18,15 +18,17 @@ import {CommonModule} from "@angular/common";
 })
 
 export class DeliveryFormComponent implements OnInit {
-  // input properties
   @Input() projectId!: string;
-  @Input() stakeholderId!: string;
+  @Input() stakeholder!: Stakeholder;
+  @Input() stakeholderStreet!: string;
+  @Input() stakeholderAddress!: string;
 
-  // form properties
   createDeliveryForm: FormGroup;
   packageTypes: PackageTypeDTO[] = [];
   isLoading: boolean = false;
   error: string | null = null;
+  currentStep: number = 1;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,19 +36,16 @@ export class DeliveryFormComponent implements OnInit {
     private packageService: PackageService
   ) {
     this.createDeliveryForm = this.formBuilder.group({
-      deliveryDate: ['', Validators.required],
-      deliveryStatus: ['', Validators.required],
       deliveryMethod: ['', Validators.required],
+      deliveryDate: [''],
       route: ['', Validators.required],
       destination: ['', Validators.required],
       notes: [''],
-      selectedPackageType: ['', Validators.required]
+      selectedPackageType: ['', Validators.required],
+      addonOptions: [''],
+      location: [''],
+      destinationType: [''],
     });
-  }
-
-  isAddonSelected(): boolean {
-    const deliveryMethod = this.createDeliveryForm.get('deliveryMethod')?.value;
-    return deliveryMethod === 'addon';
   }
 
   ngOnInit(): void {
@@ -54,7 +53,7 @@ export class DeliveryFormComponent implements OnInit {
   }
 
   fetchPackageTypes(): void {
-    this.packageService.getPackageTypes(1) // Replace with the actual project ID
+    this.packageService.getPackageTypes(1)
       .subscribe(
         (types: PackageTypeDTO[]): void => {
           this.packageTypes = types;
@@ -62,18 +61,54 @@ export class DeliveryFormComponent implements OnInit {
       );
   }
 
+
+  // Set Stakeholder location or custom location
+  changeDestinationType(): void {
+    const selectedDestinationType = this.createDeliveryForm.get('destinationType')?.value;
+    if (selectedDestinationType === 'custom') {
+      console.log('Custom destination selected');
+      this.createDeliveryForm.get('location')?.patchValue(this.stakeholder.streetAddress);
+    } else if (selectedDestinationType === 'current') {
+      this.createDeliveryForm.get('destination')?.patchValue(this.createDeliveryForm.get('location')?.value);
+      console.log('Current location selected');
+    }
+  }
+
+  // Set Delivery Type
+  onDeliveryMethodChange(): void {
+    const selectedDeliveryMethod = this.createDeliveryForm.get('deliveryMethod')?.value;
+    // If in person, set the location to the stakeholder's street address
+    if (selectedDeliveryMethod === 'person') {
+      this.createDeliveryForm.get('location')?.patchValue(this.stakeholder.streetAddress);
+    } else if (selectedDeliveryMethod === 'mail') {
+      this.createDeliveryForm.get('location')?.patchValue(this.stakeholder.mailingAddress);
+    }
+  }
+
+  // Returns true if the addon option is selected
+  isAddonSelected(): boolean {
+    const location = this.createDeliveryForm.get('location')?.value;
+    return location !== '';
+  }
+
+  nextStep(): void {
+      this.currentStep++;
+  }
+
+  prevStep(): void {
+    this.currentStep--;
+  }
+
+
   createDelivery(): void {
     if (this.createDeliveryForm.valid) {
-
       const formData: DeliveryDTO = {
-        date: this.createDeliveryForm.value.deliveryDate,
-        status: this.createDeliveryForm.value.deliveryStatus,
         route: this.createDeliveryForm.value.route,
         destination: this.createDeliveryForm.value.destination,
         delivery_method: this.createDeliveryForm.value.deliveryMethod,
         notes: this.createDeliveryForm.value.notes,
-        projectId: 1,
-        stakeholderId: Number(this.stakeholderId),
+        projectId: 1, // Use the input property
+        stakeholderId: Number(this.stakeholder.id),
         packageTypeId: this.createDeliveryForm.value.selectedPackageType
       };
 
@@ -84,7 +119,7 @@ export class DeliveryFormComponent implements OnInit {
           catchError((error) => {
             console.error('Error creating delivery:', error);
             this.error = 'Error creating delivery';
-            throw error; // Re-throw the error to propagate it to the outer catch block
+            throw error;
           }),
           finalize((): boolean => this.isLoading = false)
         )
@@ -92,8 +127,11 @@ export class DeliveryFormComponent implements OnInit {
           // Reset form state after successful submission
           this.createDeliveryForm.reset();
           this.error = null;
+          this.currentStep = 1; // Reset to the first step
           console.log('Delivery created successfully!');
         });
     }
   }
+
+  protected readonly location = location;
 }

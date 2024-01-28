@@ -1,0 +1,39 @@
+<div class="page-header">
+  <div class="header-info">
+    <h1>{{pageName}}</h1>
+    <h2>{{selectedProject?.name}}</h2>
+  </div>
+  <button (click)="togglePopup()" >
+    Change Project
+  </button>
+</div>
+
+<div class="modal-overlay" *ngIf="showPopup" (click)="togglePopup()">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>Select Project</h2>
+      <button (click)="togglePopup()" class="close-button">X</button>
+    </div>
+    <div class="modal-content">
+      <table class="project-tbl">
+        <thead>
+        <tr class="project-header">
+          <th>Name</th>
+          <th>Year</th>
+          <th>Notes</th>
+          <th>Survey Link</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let project of projects" class="project-row" (click)="selectProject(project)">
+          <td>{{project.name}}</td>
+          <td>{{project.year}}</td>
+          <td>{{project.notes}}</td>
+          <td>{{project.surveyLink}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

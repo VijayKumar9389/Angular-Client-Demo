@@ -1,84 +1,101 @@
 <div class="stakeholder-list-container">
   <ul class="stakeholder-list">
-    <label>Total: {{stakeholders?.length}}</label>
+    <label>Total: {{ stakeholders?.length }}</label>
 
     <li *ngFor="let stakeholder of stakeholders" (click)="navigateToStakeholderPage(stakeholder, stakeholder.id)"
         class="stakeholder-list-item">
-
       <div class="stakeholder-item">
-
         <h3 class="stakeholder-name">{{ stakeholder.name }}</h3>
-
         <div class="stakeholder-list-wrapper">
-
           <div class="stakeholder-contact">
 
             <!-- Phone -->
             <div class="info-item">
-              <span class="info-lbl">Phone: </span>
+              <span class="material-symbols-outlined">
+                call
+              </span>
+              <span class="info-lbl">Phone:</span>
               <span class="info-value"
                     [class.green]="stakeholder.phoneNumber.length > 0"
                     [class.red]="stakeholder.phoneNumber.length === 0">
-      {{ stakeholder.phoneNumber.length > 0 ? 'Available' : 'N/A' }}
-    </span>
+                    {{ stakeholder.phoneNumber.length > 0 ? 'Available' : 'N/A' }}
+              </span>
             </div>
 
             <!-- Address -->
             <div class="info-item">
+              <span class="material-symbols-outlined">
+                home
+              </span>
               <span class="info-lbl">Address: </span>
               <span class="info-value"
                     [class.green]="stakeholder.streetAddress.length > 0"
                     [class.red]="stakeholder.streetAddress.length === 0">
-      {{ stakeholder.streetAddress.length > 0 ? 'Available' : 'N/A' }}
-    </span>
+                     {{ stakeholder.streetAddress.length > 0 ? 'Available' : 'N/A' }}
+              </span>
             </div>
 
             <!-- Email -->
             <div class="info-item">
+              <span class="material-symbols-outlined">
+mail
+</span>
               <span class="info-lbl">Mailing: </span>
               <span class="info-value"
                     [class.green]="stakeholder.mailingAddress.length > 0"
                     [class.red]="stakeholder.mailingAddress.length === 0">
-      {{ stakeholder.mailingAddress.length > 0 ? 'Available' : 'N/A' }}
-    </span>
+                {{ stakeholder.mailingAddress.length > 0 ? 'Available' : 'N/A' }}
+              </span>
             </div>
 
             <!-- Status -->
             <div class="info-item">
+              <span class="material-symbols-outlined">
+health_and_safety
+</span>
               <span class="info-lbl">Status: </span>
               <span class="info-value" [ngClass]="{
-      'green': stakeholder.stakeholderStatus === 'GREEN',
-      'red': stakeholder.stakeholderStatus === 'RED',
-      'yellow': stakeholder.stakeholderStatus === 'YELLOW'
-    }">
-      {{ getStatusDescription(stakeholder.stakeholderStatus) }}
-    </span>
+                'green': stakeholder.stakeholderStatus === 'GREEN',
+                'red': stakeholder.stakeholderStatus === 'RED',
+                'yellow': stakeholder.stakeholderStatus === 'YELLOW'
+                }">
+                {{ getStatusDescription(stakeholder.stakeholderStatus) }}
+              </span>
             </div>
 
             <!-- Contacted -->
             <div class="info-item">
+              <span class="material-symbols-outlined">
+contact_phone
+</span>
               <span class="info-lbl">Contacted: </span>
               <span class="info-value" [ngClass]="{
-      'green': stakeholder.contacted === 'YES',
-      'red': stakeholder.contacted !== 'YES'
-    }">
-      {{ stakeholder.contacted === 'YES' ? 'Yes' : 'No' }}
-    </span>
+                'green': stakeholder.contacted === 'YES',
+                'red': stakeholder.contacted !== 'YES'
+                }">
+                {{ stakeholder.contacted === 'YES' ? 'Yes' : 'No' }}
+              </span>
             </div>
 
             <!-- Consultation -->
             <div class="info-item">
+              <span class="material-symbols-outlined">
+handshake
+</span>
               <span class="info-lbl">Consultation: </span>
               <span class="info-value" [ngClass]="{
-      'green': stakeholder.consultation !== '',
-      'red': stakeholder.consultation === ''
-    }">
-      {{ stakeholder.consultation !== '' ? 'Yes' : 'No' }}
-    </span>
+                'green': stakeholder.consultation !== '',
+                'red': stakeholder.consultation === ''
+                }">
+                {{ stakeholder.consultation !== '' ? 'Yes' : 'No' }}
+              </span>
             </div>
 
             <!-- Package -->
             <div class="info-item">
+              <span class="material-symbols-outlined">
+local_shipping
+</span>
               <span class="info-lbl">Delivery: </span>
               <span class="info-value" [ngClass]="{
       'green': stakeholder.packageId != null,
@@ -87,10 +104,7 @@
       {{ stakeholder.packageId != null ? 'Planned' : 'No' }}
     </span>
             </div>
-
           </div>
-
-
         </div>
 
         <div class="stakeholder-tract-wrapper">

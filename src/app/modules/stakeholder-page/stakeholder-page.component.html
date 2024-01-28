@@ -1,7 +1,11 @@
 <div class="stakeholder-page-container">
 
   <div class="header">
-    <button>Back</button>
+    <button>
+      <span class="material-symbols-outlined">
+arrow_back
+</span>
+    </button>
     <h1>{{ stakeholder.name }}</h1>
 <!--    <div class="header-buttons">-->
 <!--      <button (click)="openModal()">Open Delivery Form</button>-->
@@ -9,15 +13,16 @@
 <!--    </div>-->
   </div>
 
-  <app-stakeholder-form [stakeholder]="stakeholder"></app-stakeholder-form>
-  <app-stakeholder-delivery [packageId]="stakeholder.packageId"></app-stakeholder-delivery>
+  <app-stakeholder-form [stakeholder]="stakeholder" ></app-stakeholder-form>
 
-  <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
-    <div class="modal-container" (click)="$event.stopPropagation()">
-      <div class="modal-header">
-        <h2>Set Delivery</h2>
-        <button class="close-button" (click)="closeModal()">X</button>
-      </div>
+  <div class="delivery-container">
+    <div class="modal-header">
+      <h2>Delivery Plans</h2>
+    </div>
+    <ng-container *ngIf="stakeholder.packageId !== null; else noDelivery">
+      <app-stakeholder-delivery [packageId]="stakeholder.packageId"></app-stakeholder-delivery>
+    </ng-container>
+    <ng-template #noDelivery>
       <div class="modal-content">
 
         <div class="submenu">
@@ -26,10 +31,12 @@
         </div>
 
         <app-package-form *ngIf="selectedComponent === 'package'" [stakeholderId]="stakeholder.id.toString()" ></app-package-form>
-        <app-delivery-form *ngIf="selectedComponent === 'delivery'" [stakeholderId]="stakeholder.id.toString()" [projectId]="projectId"></app-delivery-form>
+        <app-delivery-form *ngIf="selectedComponent === 'delivery'" [stakeholder]="stakeholder" [projectId]="projectId"></app-delivery-form>
       </div>
-    </div>
+    </ng-template>
   </div>
+
+  <app-tract-list [tractRecords]="stakeholder.tractRecords"></app-tract-list>
+
 </div>
 
-<app-tract-list [tractRecords]="stakeholder.tractRecords"></app-tract-list>

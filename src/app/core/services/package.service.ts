@@ -7,6 +7,8 @@ import {PackageTypeDTO, PackageAddDTO} from "../models/delivery.model";
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class PackageService {
   private apiUrl: string = 'http://localhost:3005/package'; // Update with your actual API URL
 
@@ -39,6 +41,23 @@ export class PackageService {
       );
   }
 
+  // Cancel a package and reset the stakeholder package ID to null
+  cancelPackage(packageId: number, stakeholderId: number): Observable<any> {
+    const url: string = `${this.apiUrl}/cancel/package/${packageId}/${stakeholderId}`;
+    return this.http.delete<any>(url)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  changePackagePackageType(packageId: number, packageTypeId: number): Observable<any> {
+    const url: string = `${this.apiUrl}/change/packagepackagetype/${packageId}/${packageTypeId}`;
+    return this.http.put<any>(url, null)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   // Handle errors
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);
@@ -46,4 +65,6 @@ export class PackageService {
       observer.error('Something went wrong. Please try again later.');
     });
   }
+
+
 }

@@ -11,17 +11,22 @@ import {StakeholderDeliveryComponent} from "./components/stakeholder-delivery/st
 @Component({
   selector: 'app-stakeholder-page',
   standalone: true,
-  imports: [StakeholderFormComponent, DeliveryFormComponent, TractListComponent, NgIf, PackageFormComponent, StakeholderDeliveryComponent],
+  imports: [
+    StakeholderFormComponent,
+    DeliveryFormComponent,
+    TractListComponent,
+    NgIf,
+    PackageFormComponent,
+    StakeholderDeliveryComponent
+  ],
   templateUrl: './stakeholder-page.component.html',
   styleUrl: './stakeholder-page.component.scss'
 })
 
 export class StakeholderPageComponent implements OnInit {
-  @ViewChild(StakeholderFormComponent) stakeholderFormComponent!: StakeholderFormComponent;
   stakeholder!: Stakeholder;
   projectId!: string;
   isModalOpen = false;
-  addToExisting = false; // Variable to track whether to add to an existing delivery
   selectedComponent: string = 'delivery';
 
   selectComponent(component: string): void {
@@ -32,7 +37,7 @@ export class StakeholderPageComponent implements OnInit {
 
   ngOnInit(): void {
     // Subscribe to route params and get the data from the state
-    this.route.params.subscribe((params) => {
+    this.route.params.subscribe((params): void => {
       // Access the state property of the ActivatedRoute
       const navigation = window.history.state;
 
@@ -40,6 +45,8 @@ export class StakeholderPageComponent implements OnInit {
       this.stakeholder = navigation.data;
       this.projectId = navigation.projectId;
     });
+    console.log(this.stakeholder)
+
   }
 
   openModal(): void {
@@ -48,23 +55,6 @@ export class StakeholderPageComponent implements OnInit {
 
   closeModal(): void {
     this.isModalOpen = false;
-    this.addToExisting = false; // Reset the variable when closing the modal
   }
 
-  // Trigger the onSubmit method of the StakeholderFormComponent
-  triggerSubmit(): void {
-    if (this.stakeholderFormComponent) {
-      this.stakeholderFormComponent.onSubmit();
-    }
-  }
-
-  createNewDelivery(): void {
-    // Handle logic for creating a new delivery
-    this.addToExisting = false;
-  }
-
-  addToExistingDelivery(): void {
-    // Handle logic for adding to an existing delivery
-    this.addToExisting = true;
-  }
 }
